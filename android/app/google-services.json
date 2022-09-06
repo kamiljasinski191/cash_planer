@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "249746516769",
+    "project_id": "cash-planer",
+    "storage_bucket": "cash-planer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249746516769:android:1d17f1bca599b6f5cc2c60",
+        "android_client_info": {
+          "package_name": "dev.onenineone.cash_planer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249746516769-btch40eqce6b1v4mtmel74pmsi2fm2np.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhFAi0w_rCDBpBRjNyC2AGqeeGrtqqW78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249746516769-btch40eqce6b1v4mtmel74pmsi2fm2np.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
