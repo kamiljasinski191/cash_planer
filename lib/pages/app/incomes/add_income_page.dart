@@ -1,5 +1,4 @@
 import 'package:cash_planer/pages/app/home/cubit/bilance_cubit.dart';
-import 'package:cash_planer/pages/app/incomes/incomes_page.dart';
 import 'package:cash_planer/pages/nav_bar/nav_bar.dart';
 import 'package:cash_planer/repositories/bilance_respository.dart';
 import 'package:flutter/material.dart';

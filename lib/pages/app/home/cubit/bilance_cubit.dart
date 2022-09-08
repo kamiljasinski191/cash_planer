@@ -20,9 +20,9 @@ class BilanceCubit extends Cubit<BilanceState> {
     _streamSubscriptionRev = _bilanceRepository.getIncomesStream().listen(
       (incomes) {
         num sumIncome = 0.0;
-        incomes.forEach((element) {
-          sumIncome += element.amount;
-        });
+        for (var income in incomes) {
+          sumIncome += income.amount;
+        }
 
         emit(BilanceState(
           incomes: incomes,
@@ -38,10 +38,13 @@ class BilanceCubit extends Cubit<BilanceState> {
     _streamSubscriptionExp = _bilanceRepository.getExpensesStream().listen(
       (expenses) {
         num sumExpenses = 0.0;
-        expenses.forEach((element) {
-          sumExpenses += element.amount;
-        });
-        emit(BilanceState(expenses: expenses, expenseAmount: sumExpenses));
+        for (var expense in expenses) {
+          sumExpenses += expense.amount;
+        }
+        emit(BilanceState(
+          expenses: expenses,
+          expenseAmount: sumExpenses,
+        ));
       },
     )..onError((error) {
         emit(const BilanceState(loadingErrorOccured: true));

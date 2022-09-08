@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:meta/meta.dart';
 
 part 'auth_state.dart';
 
@@ -15,7 +14,6 @@ class AuthCubit extends Cubit<AuthState> {
             user: null,
             errorMassage: '',
             isLoading: false,
-            schouldRegister: false,
           ),
         );
 
@@ -27,7 +25,6 @@ class AuthCubit extends Cubit<AuthState> {
         user: null,
         isLoading: true,
         errorMassage: '',
-        schouldRegister: false,
       ),
     );
     _streamSubscription = FirebaseAuth.instance.authStateChanges().listen(
@@ -37,7 +34,6 @@ class AuthCubit extends Cubit<AuthState> {
             user: user,
             isLoading: false,
             errorMassage: '',
-            schouldRegister: false,
           ),
         );
       },
@@ -47,7 +43,6 @@ class AuthCubit extends Cubit<AuthState> {
             user: null,
             isLoading: false,
             errorMassage: error.toString(),
-            schouldRegister: false,
           ),
         );
       });
@@ -74,34 +69,31 @@ class AuthCubit extends Cubit<AuthState> {
       user: user,
       isLoading: true,
       errorMassage: '',
-      schouldRegister: true,
     ));
     final url = await FirebaseStorage.instance
         .ref('profileImages/${user.uid}')
         .getDownloadURL();
 
-    print(url);
     final currentUser = FirebaseAuth.instance.currentUser;
     await currentUser?.reload();
 
     try {
       await currentUser?.updateDisplayName(displayName);
     } catch (e) {
-      print(e);
+      throw Exception(e);
     }
     try {
       await currentUser?.sendEmailVerification();
     } catch (e) {
-      print(e);
+      throw Exception(e);
     }
     try {
       await currentUser?.updatePhotoURL(url);
     } catch (e) {
-      print(e);
+      throw Exception(e);
     }
 
     await currentUser?.reload();
-    print(user);
   }
 
   Future<void> logIn({
@@ -112,7 +104,6 @@ class AuthCubit extends Cubit<AuthState> {
       email: email,
       password: password,
     );
-    print(state.user);
   }
 
   Future<void> logOut() async {
@@ -129,43 +120,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> sendResetPasswordEmail({
     required final String email,
   }) async {
-    final user = FirebaseAuth.instance.currentUser;
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-  }
-
-  Future<void> schouldRegister() async {
-    emit(const AuthState(
-      user: null,
-      isLoading: false,
-      errorMassage: '',
-      schouldRegister: true,
-    ));
-  }
-
-  Future<void> schouldLogIn() async {
-    emit(const AuthState(
-      user: null,
-      isLoading: false,
-      errorMassage: '',
-      schouldRegister: false,
-    ));
-  }
-
-  Future<void> uploadPhoto(
-    String filePath,
-    String fileName,
-  ) async {
-    File file = File(filePath);
-    try {
-      await FirebaseStorage.instance
-          .ref('profileImages/$fileName')
-          .putFile(file);
-      String url = await FirebaseStorage.instance
-          .ref('profileImages/$fileName')
-          .getDownloadURL();
-    } on FirebaseException catch (e) {
-      throw Exception(e);
-    }
   }
 
   @override
