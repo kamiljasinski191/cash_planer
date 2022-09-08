@@ -4,6 +4,7 @@ import 'package:cash_planer/pages/nav_bar/nav_bar.dart';
 import 'package:cash_planer/repositories/bilance_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AddExpensePage extends StatefulWidget {
   const AddExpensePage({super.key});
@@ -47,7 +48,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
           return Scaffold(
             drawer: const NavBar(),
             appBar: AppBar(
-                centerTitle: true, title: const Text('Add your new Expense')),
+              centerTitle: true,
+              title: const Text('Add your new Expense'),
+            ),
             body: Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
@@ -91,12 +94,22 @@ class _AddExpensePageState extends State<AddExpensePage> {
                                   );
                               _titlecontroller.clear();
                               _amountcontroller.clear();
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const ExpensesPage(),
-                              ));
+                              context.pop();
                             },
                       child: const Text(
                         'Save',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: const Text(
+                        'Back',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),

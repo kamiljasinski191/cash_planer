@@ -1,6 +1,8 @@
-import 'package:cash_planer/services/auth/cubit/auth_cubit.dart';
+import 'package:cash_planer/pages/login/cubit/auth_cubit.dart';
+import 'package:cash_planer/pages/login/password_reset_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({
@@ -67,7 +69,11 @@ class _LoginPageState extends State<LoginPage> {
                   TextField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    style: const TextStyle(fontSize: 18, height: 1.3),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      height: 1.3,
+                      color: Colors.black,
+                    ),
                     decoration: const InputDecoration(
                       prefixIcon: Icon(
                         Icons.person,
@@ -112,7 +118,11 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     autocorrect: false,
                     enableSuggestions: false,
-                    style: const TextStyle(fontSize: 18, height: 1.3),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      height: 1.3,
+                      color: Colors.black,
+                    ),
                     obscureText: true,
                     decoration: const InputDecoration(
                       prefixIcon: Icon(
@@ -146,10 +156,44 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.read<AuthCubit>().schouldRegister();
+                      context.go('/register');
+                      // context.read<AuthCubit>().schouldRegister();
                     },
                     child: const Text(
                       'No account yet? Register Now.',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromRGBO(255, 233, 39, 1),
+                        shadows: [
+                          Shadow(
+                              // bottomLeft
+                              offset: Offset(-1, -1),
+                              color: Colors.black),
+                          Shadow(
+                              // bottomRight
+                              offset: Offset(1, -1),
+                              color: Colors.black),
+                          Shadow(
+                              // topRight
+                              offset: Offset(1, 1),
+                              color: Colors.black),
+                          Shadow(
+                              // topLeft
+                              offset: Offset(-1, 1),
+                              color: Colors.black),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      context.go('/forgot_password');
+                    },
+                    child: const Text(
+                      'Forgot password? Reset here.',
                       style: TextStyle(
                         fontSize: 18,
                         color: Color.fromRGBO(255, 233, 39, 1),

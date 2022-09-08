@@ -126,6 +126,13 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> sendResetPasswordEmail({
+    required final String email,
+  }) async {
+    final user = FirebaseAuth.instance.currentUser;
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
   Future<void> schouldRegister() async {
     emit(const AuthState(
       user: null,
@@ -156,20 +163,9 @@ class AuthCubit extends Cubit<AuthState> {
       String url = await FirebaseStorage.instance
           .ref('profileImages/$fileName')
           .getDownloadURL();
-      print('PIASJDASDASDASDASDA   $url');
     } on FirebaseException catch (e) {
       throw Exception(e);
     }
-  }
-
-  Future<void> getUrl() async {
-    // await FirebaseStorage.instance
-    //     .ref('profileImages/Profilephoto.jpg')
-    //     .getData();
-    FirebaseStorage.instance.ref().child("profileImages/Profilephoto.jpg");
-    String url =
-        (await FirebaseStorage.instance.ref().getDownloadURL()).toString();
-    print(url);
   }
 
   @override

@@ -1,10 +1,11 @@
 import 'package:cash_planer/pages/app/expenses/expenses_page.dart';
 import 'package:cash_planer/pages/app/home/home_page.dart';
 import 'package:cash_planer/pages/app/incomes/incomes_page.dart';
+import 'package:cash_planer/pages/login/cubit/auth_cubit.dart';
 import 'package:cash_planer/pages/login/user_details_page.dart';
-import 'package:cash_planer/services/auth/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -64,22 +65,19 @@ class NavBar extends StatelessWidget {
                   leading: const Icon(Icons.home),
                   title: const Text('Home'),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const HomePage()));
+                    context.go('/home');
                   },
                 ),
                 ListTile(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const IncomesPage()));
+                    context.go('/home/incomes');
                   },
                   leading: const Icon(Icons.minimize),
                   title: const Text('Incomes'),
                 ),
                 ListTile(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const ExpensesPage()));
+                    context.go('/home/expenses');
                   },
                   leading: const Icon(Icons.minimize),
                   title: const Text('Expenses'),
@@ -100,9 +98,7 @@ class NavBar extends StatelessWidget {
                   leading: const Icon(Icons.settings),
                   title: const Text('Your account'),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const UserDetailsPage(),
-                    ));
+                    context.go('/user');
                   },
                 ),
                 const Divider(),

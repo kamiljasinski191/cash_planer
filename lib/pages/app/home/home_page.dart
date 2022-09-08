@@ -5,6 +5,7 @@ import 'package:cash_planer/pages/nav_bar/nav_bar.dart';
 import 'package:cash_planer/repositories/bilance_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(fontSize: 24),
                           ),
                           Text(
-                            '${state.incomeAmount} \$',
+                            '${state.incomeAmount} PLN',
                             style: const TextStyle(fontSize: 24),
                           ),
                         ],
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(fontSize: 24),
                                 ),
                                 Text(
-                                  '${state.expenseAmount} \$',
+                                  '${state.expenseAmount} PLN',
                                   style: const TextStyle(fontSize: 24),
                                 ),
                               ],
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(fontSize: 24),
                                 ),
                                 Text(
-                                  '$sumConverted \$',
+                                  '$sumConverted PLN',
                                   style: const TextStyle(fontSize: 24),
                                 ),
                               ],
@@ -113,9 +114,7 @@ class _HomePageState extends State<HomePage> {
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const IncomesPage(),
-                      ));
+                      context.go('/home/incomes');
                     },
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -135,9 +134,7 @@ class _HomePageState extends State<HomePage> {
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const ExpensesPage(),
-                      ));
+                      context.go('/home/expenses');
                     },
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(

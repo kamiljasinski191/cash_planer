@@ -4,6 +4,7 @@ import 'package:cash_planer/pages/nav_bar/nav_bar.dart';
 import 'package:cash_planer/repositories/bilance_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AddIncomePage extends StatefulWidget {
   const AddIncomePage({super.key});
@@ -90,12 +91,22 @@ class _AddIncomePageState extends State<AddIncomePage> {
                                   date);
                               _titlecontroller.clear();
                               _amountcontroller.clear();
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const IncomesPage(),
-                              ));
+                              context.pop();
                             },
                       child: const Text(
                         'Save',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: const Text(
+                        'Back',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),

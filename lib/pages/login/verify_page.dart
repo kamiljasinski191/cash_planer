@@ -1,4 +1,4 @@
-import 'package:cash_planer/services/auth/cubit/auth_cubit.dart';
+import 'package:cash_planer/pages/login/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

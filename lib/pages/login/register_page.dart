@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:cash_planer/services/auth/cubit/auth_cubit.dart';
+import 'package:cash_planer/pages/login/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -75,6 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       Center(
                           child: _image == null
                               ? const CircleAvatar(
+                                  backgroundColor: Colors.yellow,
                                   backgroundImage:
                                       AssetImage('images/person.png'),
                                   radius: 90,
@@ -86,8 +88,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       Row(
                         children: [
                           SizedBox(
-                            height: 30,
-                            width: 30,
+                            height: 50,
+                            width: 50,
                             child: FloatingActionButton(
                                 onPressed: () {
                                   setState(() {
@@ -102,28 +104,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(
                             width: 30,
                           ),
-                          SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: BlocBuilder<AuthCubit, AuthState>(
-                              builder: (context, state) {
-                                return FloatingActionButton(
-                                    onPressed: () {
-                                      setState(() {});
-                                    },
-                                    child: const Icon(
-                                      Icons.check,
-                                      size: 25,
-                                    ));
-                              },
-                            ),
-                          ),
                           const SizedBox(
                             width: 30,
                           ),
                           SizedBox(
-                            height: 30,
-                            width: 30,
+                            height: 50,
+                            width: 50,
                             child: FloatingActionButton(
                                 onPressed: () {
                                   setState(() {
@@ -170,7 +156,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextField(
                   controller: _nameController,
                   keyboardType: TextInputType.emailAddress,
-                  style: const TextStyle(fontSize: 18, height: 1.3),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    height: 1.3,
+                    color: Colors.black,
+                  ),
                   decoration: const InputDecoration(
                     prefixIcon: Icon(
                       Icons.person_add,
@@ -211,7 +201,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  style: const TextStyle(fontSize: 18, height: 1.3),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    height: 1.3,
+                    color: Colors.black,
+                  ),
                   decoration: const InputDecoration(
                     prefixIcon: Icon(
                       Icons.person,
@@ -256,7 +250,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _passwordController,
                   autocorrect: false,
                   enableSuggestions: false,
-                  style: const TextStyle(fontSize: 18, height: 1.3),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    height: 1.3,
+                    color: Colors.black,
+                  ),
                   obscureText: true,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(
@@ -278,14 +276,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: 135,
                       child: ElevatedButton(
                         onPressed: () {
-                          setState(() {
-                            context.read<AuthCubit>().createUser(
-                                  email: _emailController.text,
-                                  password: _passwordController.text,
-                                  displayName: _nameController.text,
-                                  filePath: _image!.path,
-                                );
-                          });
+                          context.read<AuthCubit>().createUser(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                                displayName: _nameController.text,
+                                filePath: _image!.path,
+                              );
+                          context.go('/');
                         },
                         child: const Text('Register'),
                       ),
@@ -294,7 +291,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.read<AuthCubit>().schouldLogIn();
+                    context.go('/login');
                   },
                   child: const Text(
                     'Already have an account? Login.',

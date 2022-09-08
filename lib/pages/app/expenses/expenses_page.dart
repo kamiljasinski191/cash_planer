@@ -5,6 +5,7 @@ import 'package:cash_planer/pages/nav_bar/nav_bar.dart';
 import 'package:cash_planer/repositories/bilance_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ExpensesPage extends StatefulWidget {
   const ExpensesPage({super.key});
@@ -24,9 +25,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
           return Scaffold(
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const AddExpensePage(),
-                ));
+                context.go('/home/expenses/add_expense');
               },
               child: const Icon(Icons.add),
             ),
@@ -45,7 +44,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
                   ),
                 ],
                 Center(
-                    child: Text(' Total expenses:   ${state.expenseAmount}',
+                    child: Text(' Total expenses:   ${state.expenseAmount} PLN',
                         style: const TextStyle(fontSize: 20)))
               ],
             ),

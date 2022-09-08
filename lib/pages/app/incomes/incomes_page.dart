@@ -1,10 +1,10 @@
 import 'package:cash_planer/pages/app/home/cubit/bilance_cubit.dart';
 import 'package:cash_planer/pages/app/list_view/list_view.dart';
-import 'package:cash_planer/pages/app/incomes/add_income_page.dart';
 import 'package:cash_planer/pages/nav_bar/nav_bar.dart';
 import 'package:cash_planer/repositories/bilance_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class IncomesPage extends StatefulWidget {
   const IncomesPage({super.key});
@@ -24,9 +24,7 @@ class _IncomesPageState extends State<IncomesPage> {
           return Scaffold(
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const AddIncomePage(),
-                ));
+                context.go('/home/incomes/add_income');
               },
               child: const Icon(Icons.add),
             ),
