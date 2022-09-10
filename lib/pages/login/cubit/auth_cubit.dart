@@ -1,14 +1,13 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:cash_planer/repositories/firebase_auth_respository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit()
+  AuthCubit(this._firebaseAuthRespository)
       : super(
           const AuthState(
             user: null,
@@ -18,6 +17,8 @@ class AuthCubit extends Cubit<AuthState> {
         );
 
   StreamSubscription? _streamSubscription;
+
+  final FirebaseAuthRespository _firebaseAuthRespository;
 
   Future<void> start() async {
     emit(
@@ -54,73 +55,38 @@ class AuthCubit extends Cubit<AuthState> {
     required final String displayName,
     required String filePath,
   }) async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    _firebaseAuthRespository.createUser(
       email: email,
       password: password,
+      displayName: displayName,
+      filePath: filePath,
     );
-    final user = FirebaseAuth.instance.currentUser;
-    File file = File(filePath);
-
-    await FirebaseStorage.instance
-        .ref('profileImages/${user!.uid}')
-        .putFile(file);
-
-    emit(AuthState(
-      user: user,
-      isLoading: true,
-      errorMassage: '',
-    ));
-    final url = await FirebaseStorage.instance
-        .ref('profileImages/${user.uid}')
-        .getDownloadURL();
-
-    final currentUser = FirebaseAuth.instance.currentUser;
-    await currentUser?.reload();
-
-    try {
-      await currentUser?.updateDisplayName(displayName);
-    } catch (e) {
-      throw Exception(e);
-    }
-    try {
-      await currentUser?.sendEmailVerification();
-    } catch (e) {
-      throw Exception(e);
-    }
-    try {
-      await currentUser?.updatePhotoURL(url);
-    } catch (e) {
-      throw Exception(e);
-    }
-
-    await currentUser?.reload();
   }
 
   Future<void> logIn({
     required final String email,
     required final String password,
   }) async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    _firebaseAuthRespository.logIn(
       email: email,
       password: password,
     );
   }
 
   Future<void> logOut() async {
-    await FirebaseAuth.instance.signOut();
+    _firebaseAuthRespository.logOut();
   }
 
   Future<void> sendEmailVerification() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      await FirebaseAuth.instance.currentUser?.sendEmailVerification();
-    }
+    _firebaseAuthRespository.sendEmailVerification();
   }
 
   Future<void> sendResetPasswordEmail({
     required final String email,
   }) async {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    _firebaseAuthRespository.resetPassword(
+      email: email,
+    );
   }
 
   @override

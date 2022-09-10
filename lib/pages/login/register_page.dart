@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cash_planer/pages/login/cubit/auth_cubit.dart';
+import 'package:cash_planer/pages/login/shadow_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,10 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 )),
                           ),
                           const SizedBox(
-                            width: 30,
-                          ),
-                          const SizedBox(
-                            width: 30,
+                            width: 70,
                           ),
                           SizedBox(
                             height: 50,
@@ -126,29 +124,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     ]),
                   ],
                 ),
-                const Text('Name:',
+                Text('Name:',
                     style: TextStyle(
                       fontSize: 32,
-                      color: Color.fromRGBO(255, 233, 39, 1),
+                      color: const Color.fromRGBO(255, 233, 39, 1),
                       fontWeight: FontWeight.w700,
-                      shadows: [
-                        Shadow(
-                            // bottomLeft
-                            offset: Offset(-1.5, -1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // bottomRight
-                            offset: Offset(1.5, -1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // topRight
-                            offset: Offset(1.5, 1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // topLeft
-                            offset: Offset(-1.5, 1.5),
-                            color: Colors.black),
-                      ],
+                      shadows: shadowBig(),
                     )),
                 const SizedBox(
                   height: 10,
@@ -171,29 +152,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     filled: true,
                   ),
                 ),
-                const Text('Email:',
+                Text('Email:',
                     style: TextStyle(
                       fontSize: 32,
-                      color: Color.fromRGBO(255, 233, 39, 1),
+                      color: const Color.fromRGBO(255, 233, 39, 1),
                       fontWeight: FontWeight.w700,
-                      shadows: [
-                        Shadow(
-                            // bottomLeft
-                            offset: Offset(-1.5, -1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // bottomRight
-                            offset: Offset(1.5, -1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // topRight
-                            offset: Offset(1.5, 1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // topLeft
-                            offset: Offset(-1.5, 1.5),
-                            color: Colors.black),
-                      ],
+                      shadows: shadowBig(),
                     )),
                 const SizedBox(
                   height: 10,
@@ -219,29 +183,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text('Password:',
+                Text('Password:',
                     style: TextStyle(
                       fontSize: 32,
-                      color: Color.fromRGBO(255, 233, 39, 1),
+                      color: const Color.fromRGBO(255, 233, 39, 1),
                       fontWeight: FontWeight.w700,
-                      shadows: [
-                        Shadow(
-                            // bottomLeft
-                            offset: Offset(-1.5, -1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // bottomRight
-                            offset: Offset(1.5, -1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // topRight
-                            offset: Offset(1.5, 1.5),
-                            color: Colors.black),
-                        Shadow(
-                            // topLeft
-                            offset: Offset(-1.5, 1.5),
-                            color: Colors.black),
-                      ],
+                      shadows: shadowBig(),
                     )),
                 const SizedBox(
                   height: 10,
@@ -293,29 +240,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () {
                     context.go('/login');
                   },
-                  child: const Text(
+                  child: Text(
                     'Already have an account? Login.',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Color.fromRGBO(255, 233, 39, 1),
-                      shadows: [
-                        Shadow(
-                            // bottomLeft
-                            offset: Offset(-1, -1),
-                            color: Colors.black),
-                        Shadow(
-                            // bottomRight
-                            offset: Offset(1, -1),
-                            color: Colors.black),
-                        Shadow(
-                            // topRight
-                            offset: Offset(1, 1),
-                            color: Colors.black),
-                        Shadow(
-                            // topLeft
-                            offset: Offset(-1, 1),
-                            color: Colors.black),
-                      ],
+                      color: const Color.fromRGBO(255, 233, 39, 1),
+                      shadows: shadowSmall(),
                     ),
                   ),
                 )

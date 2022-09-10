@@ -1,4 +1,5 @@
 import 'package:cash_planer/pages/login/cubit/auth_cubit.dart';
+import 'package:cash_planer/repositories/firebase_auth_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,7 +10,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit()..start(),
+      create: (context) => AuthCubit(FirebaseAuthRespository())..start(),
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           final user = state.user;

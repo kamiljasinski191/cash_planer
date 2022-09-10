@@ -9,6 +9,7 @@ import 'package:cash_planer/pages/login/password_reset_view.dart';
 import 'package:cash_planer/pages/login/register_page.dart';
 import 'package:cash_planer/pages/login/user_details_page.dart';
 import 'package:cash_planer/pages/root_page.dart';
+import 'package:cash_planer/repositories/firebase_auth_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(),
+      create: (context) => AuthCubit(FirebaseAuthRespository()),
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           return MaterialApp.router(

@@ -1,4 +1,5 @@
 import 'package:cash_planer/pages/login/cubit/auth_cubit.dart';
+import 'package:cash_planer/pages/login/shadow_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -38,29 +39,12 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 190,
                   ),
-                  const Text('Email:',
+                  Text('Email:',
                       style: TextStyle(
                         fontSize: 32,
-                        color: Color.fromRGBO(255, 233, 39, 1),
+                        color: const Color.fromRGBO(255, 233, 39, 1),
                         fontWeight: FontWeight.w700,
-                        shadows: [
-                          Shadow(
-                              // bottomLeft
-                              offset: Offset(-1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // bottomRight
-                              offset: Offset(1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topRight
-                              offset: Offset(1.5, 1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topLeft
-                              offset: Offset(-1.5, 1.5),
-                              color: Colors.black),
-                        ],
+                        shadows: shadowBig(),
                       )),
                   const SizedBox(
                     height: 10,
@@ -86,29 +70,12 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text('Password:',
+                  Text('Password:',
                       style: TextStyle(
                         fontSize: 32,
-                        color: Color.fromRGBO(255, 233, 39, 1),
+                        color: const Color.fromRGBO(255, 233, 39, 1),
                         fontWeight: FontWeight.w700,
-                        shadows: [
-                          Shadow(
-                              // bottomLeft
-                              offset: Offset(-1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // bottomRight
-                              offset: Offset(1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topRight
-                              offset: Offset(1.5, 1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topLeft
-                              offset: Offset(-1.5, 1.5),
-                              color: Colors.black),
-                        ],
+                        shadows: shadowBig(),
                       )),
                   const SizedBox(
                     height: 10,
@@ -156,31 +123,13 @@ class _LoginPageState extends State<LoginPage> {
                   TextButton(
                     onPressed: () {
                       context.go('/register');
-                      // context.read<AuthCubit>().schouldRegister();
                     },
-                    child: const Text(
+                    child: Text(
                       'No account yet? Register Now.',
                       style: TextStyle(
                         fontSize: 18,
-                        color: Color.fromRGBO(255, 233, 39, 1),
-                        shadows: [
-                          Shadow(
-                              // bottomLeft
-                              offset: Offset(-1, -1),
-                              color: Colors.black),
-                          Shadow(
-                              // bottomRight
-                              offset: Offset(1, -1),
-                              color: Colors.black),
-                          Shadow(
-                              // topRight
-                              offset: Offset(1, 1),
-                              color: Colors.black),
-                          Shadow(
-                              // topLeft
-                              offset: Offset(-1, 1),
-                              color: Colors.black),
-                        ],
+                        color: const Color.fromRGBO(255, 233, 39, 1),
+                        shadows: shadowSmall(),
                       ),
                     ),
                   ),
@@ -191,29 +140,12 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       context.go('/forgot_password');
                     },
-                    child: const Text(
+                    child: Text(
                       'Forgot password? Reset here.',
                       style: TextStyle(
                         fontSize: 18,
-                        color: Color.fromRGBO(255, 233, 39, 1),
-                        shadows: [
-                          Shadow(
-                              // bottomLeft
-                              offset: Offset(-1, -1),
-                              color: Colors.black),
-                          Shadow(
-                              // bottomRight
-                              offset: Offset(1, -1),
-                              color: Colors.black),
-                          Shadow(
-                              // topRight
-                              offset: Offset(1, 1),
-                              color: Colors.black),
-                          Shadow(
-                              // topLeft
-                              offset: Offset(-1, 1),
-                              color: Colors.black),
-                        ],
+                        color: const Color.fromRGBO(255, 233, 39, 1),
+                        shadows: shadowBig(),
                       ),
                     ),
                   )
