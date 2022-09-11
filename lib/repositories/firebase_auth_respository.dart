@@ -38,26 +38,26 @@ class FirebaseAuthRespository implements AuthProvider {
       final firebaseUser = FirebaseAuth.instance.currentUser;
 
       await FirebaseStorage.instance
-          .ref('profileImages/${firebaseUser!.uid}')
+          .ref('profileImages/${user!.uid}')
           .putFile(file);
 
       final url = await FirebaseStorage.instance
-          .ref('profileImages/${firebaseUser.uid}')
+          .ref('profileImages/${user.uid}')
           .getDownloadURL();
 
-      await firebaseUser.reload();
+      await firebaseUser?.reload();
 
-      await firebaseUser.updateDisplayName(displayName);
+      await firebaseUser!.updateDisplayName(displayName);
 
       await firebaseUser.sendEmailVerification();
 
       await firebaseUser.updatePhotoURL(url);
 
       await firebaseUser.reload();
-      if (user != null) {
+      try {
         return user;
-      } else {
-        throw Exception();
+      } catch (e) {
+        throw Exception(e);
       }
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code.toString());
@@ -78,7 +78,7 @@ class FirebaseAuthRespository implements AuthProvider {
       if (user != null) {
         return user;
       } else {
-        throw Exception();
+        throw Exception('User not logged in');
       }
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code.toString());
