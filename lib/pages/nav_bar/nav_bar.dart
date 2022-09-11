@@ -42,7 +42,7 @@ class NavBar extends StatelessWidget {
                       child: ClipOval(
                         child: user != null
                             ? Image.network(
-                                user.photoURL!,
+                                user.photoUrl!,
                                 width: 110,
                                 height: 110,
                                 fit: BoxFit.fill,
@@ -88,7 +88,7 @@ class NavBar extends StatelessWidget {
                   leading: const Icon(Icons.settings),
                   title: const Text('COMMING SOON'),
                   onTap: () {
-                    print(user);
+                    print(user!.photoUrl);
                   },
                 ),
                 ListTile(

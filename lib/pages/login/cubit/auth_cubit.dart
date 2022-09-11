@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cash_planer/models/user_mode.dart';
 import 'package:cash_planer/repositories/firebase_auth_respository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 part 'auth_state.dart';
 
@@ -28,25 +28,27 @@ class AuthCubit extends Cubit<AuthState> {
         errorMassage: '',
       ),
     );
-    _streamSubscription = FirebaseAuth.instance.authStateChanges().listen(
+    _streamSubscription =
+        _firebaseAuthRespository.getInstance.authStateChanges().listen(
       (user) {
+        final userModel = UserModel.fromFirebase(user!);
         emit(
           AuthState(
-            user: user,
+            user: userModel,
             isLoading: false,
             errorMassage: '',
           ),
         );
       },
     )..onError((error) {
-        emit(
-          AuthState(
-            user: null,
-            isLoading: false,
-            errorMassage: error.toString(),
-          ),
-        );
-      });
+            emit(
+              AuthState(
+                user: null,
+                isLoading: false,
+                errorMassage: error.toString(),
+              ),
+            );
+          });
   }
 
   Future<void> createUser({

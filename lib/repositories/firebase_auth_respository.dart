@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cash_planer/models/user_mode.dart';
@@ -6,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseAuthRespository implements AuthProvider {
+  FirebaseAuth getInstance = FirebaseAuth.instance;
+
   @override
   UserModel? get currentUser {
     final user = FirebaseAuth.instance.currentUser;

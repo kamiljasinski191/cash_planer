@@ -1,7 +1,7 @@
 part of 'auth_cubit.dart';
 
 class AuthState {
-  final User? user;
+  final UserModel? user;
   final bool isLoading;
   final String errorMassage;
 

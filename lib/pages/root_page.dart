@@ -20,7 +20,7 @@ class RootPage extends StatelessWidget {
         builder: (context, state) {
           final user = state.user;
           if (user != null) {
-            if (user.emailVerified) {
+            if (user.isEmailVerified) {
               return const HomePage();
             } else {
               return const VerifyPage();
