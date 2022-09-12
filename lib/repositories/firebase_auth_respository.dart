@@ -7,7 +7,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseAuthRespository implements AuthProvider {
-  FirebaseAuth getInstance = FirebaseAuth.instance;
+  Stream<UserModel?> userModelStream() => FirebaseAuth.instance
+      .authStateChanges()
+      .map((user) => (user != null) ? UserModel.fromFirebase(user) : null);
 
   @override
   UserModel? get currentUser {

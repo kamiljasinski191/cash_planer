@@ -29,28 +29,26 @@ class AuthCubit extends Cubit<AuthState> {
       ),
     );
     _streamSubscription =
-        _firebaseAuthRespository.getInstance.authStateChanges().listen(
-      (user) {
-        if (user != null) {
-          final userModel = UserModel.fromFirebase(user);
-          emit(
-            AuthState(
-              user: userModel,
-              isLoading: false,
-              errorMassage: '',
-            ),
-          );
-        } else {
-          emit(
-            const AuthState(
-              user: null,
-              isLoading: false,
-              errorMassage: '',
-            ),
-          );
-        }
-      },
-    )..onError((error) {
+        _firebaseAuthRespository.userModelStream().listen((user) {
+      if (user != null) {
+        emit(
+          AuthState(
+            user: user,
+            isLoading: false,
+            errorMassage: '',
+          ),
+        );
+      } else {
+        emit(
+          const AuthState(
+            user: null,
+            isLoading: false,
+            errorMassage: '',
+          ),
+        );
+      }
+    })
+          ..onError((error) {
             emit(
               AuthState(
                 user: null,
@@ -60,6 +58,47 @@ class AuthCubit extends Cubit<AuthState> {
             );
           });
   }
+
+  // Future<void> start() async {
+  //   emit(
+  //     const AuthState(
+  //       user: null,
+  //       isLoading: true,
+  //       errorMassage: '',
+  //     ),
+  //   );
+  //   _streamSubscription =
+  //       _firebaseAuthRespository.getInstance.authStateChanges().listen(
+  //     (user) {
+  //       if (user != null) {
+  //         final userModel = UserModel.fromFirebase(user);
+  //         emit(
+  //           AuthState(
+  //             user: userModel,
+  //             isLoading: false,
+  //             errorMassage: '',
+  //           ),
+  //         );
+  //       } else {
+  //         emit(
+  //           const AuthState(
+  //             user: null,
+  //             isLoading: false,
+  //             errorMassage: '',
+  //           ),
+  //         );
+  //       }
+  //     },
+  //   )..onError((error) {
+  //           emit(
+  //             AuthState(
+  //               user: null,
+  //               isLoading: false,
+  //               errorMassage: error.toString(),
+  //             ),
+  //           );
+  //         });
+  // }
 
   Future<void> createUser({
     required final String email,
