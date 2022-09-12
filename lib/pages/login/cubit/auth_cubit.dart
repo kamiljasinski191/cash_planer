@@ -31,14 +31,24 @@ class AuthCubit extends Cubit<AuthState> {
     _streamSubscription =
         _firebaseAuthRespository.getInstance.authStateChanges().listen(
       (user) {
-        final userModel = UserModel.fromFirebase(user!);
-        emit(
-          AuthState(
-            user: userModel,
-            isLoading: false,
-            errorMassage: '',
-          ),
-        );
+        if (user != null) {
+          final userModel = UserModel.fromFirebase(user);
+          emit(
+            AuthState(
+              user: userModel,
+              isLoading: false,
+              errorMassage: '',
+            ),
+          );
+        } else {
+          emit(
+            const AuthState(
+              user: null,
+              isLoading: false,
+              errorMassage: '',
+            ),
+          );
+        }
       },
     )..onError((error) {
             emit(
