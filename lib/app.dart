@@ -1,15 +1,13 @@
-import 'package:cash_planer/pages/app/expenses/add_expense_page.dart';
-import 'package:cash_planer/pages/app/expenses/expenses_page.dart';
-import 'package:cash_planer/pages/app/home/home_page.dart';
-import 'package:cash_planer/pages/app/incomes/add_income_page.dart';
-import 'package:cash_planer/pages/app/incomes/incomes_page.dart';
-import 'package:cash_planer/pages/login/cubit/auth_cubit.dart';
-import 'package:cash_planer/pages/login/login_page.dart';
-import 'package:cash_planer/pages/login/password_reset_view.dart';
-import 'package:cash_planer/pages/login/register_page.dart';
-import 'package:cash_planer/pages/login/user_details_page.dart';
-import 'package:cash_planer/pages/root_page.dart';
-import 'package:cash_planer/repositories/firebase_auth_respository.dart';
+import 'package:cash_planer/data/remote_data_source/auth_remote_data_source.dart';
+import 'package:cash_planer/features/auth/auth_gate/auth_gate.dart';
+import 'package:cash_planer/features/auth/cubit/auth_cubit.dart';
+import 'package:cash_planer/features/home/home_page.dart';
+import 'package:cash_planer/features/expenses/add_expense_page.dart';
+import 'package:cash_planer/features/expenses/expenses_page.dart';
+import 'package:cash_planer/features/incomes/add_income_page.dart';
+import 'package:cash_planer/features/incomes/incomes_page.dart';
+import 'package:cash_planer/features/auth/user_details_page.dart';
+import 'package:cash_planer/domain/repositories/firebase_auth_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +18,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(FirebaseAuthRespository()),
+      create: (context) =>
+          AuthCubit(FirebaseAuthRespository(AuthRemoteDataSource())),
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           return MaterialApp.router(
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
     routes: <GoRoute>[
       GoRoute(
           path: '/',
-          builder: (context, state) => const RootPage(),
+          builder: (context, state) => const AuthGate(),
           routes: <GoRoute>[
             GoRoute(
                 path: 'home',
@@ -71,18 +70,6 @@ class MyApp extends StatelessWidget {
                       ]),
                 ]),
           ]),
-      GoRoute(
-        path: '/register',
-        builder: (context, state) => const RegisterPage(),
-      ),
-      GoRoute(
-        path: '/login',
-        builder: (context, state) => const LoginPage(),
-      ),
-      GoRoute(
-        path: '/forgot_password',
-        builder: (context, state) => const ResetPasswordPage(),
-      ),
       GoRoute(
         path: '/user',
         builder: (context, state) => const UserDetailsPage(),
