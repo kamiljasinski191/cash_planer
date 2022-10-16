@@ -1,19 +1,19 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
-class ExpenseModel {
-  final String title;
-  final num amount;
-  final String id;
-  final DateTime date;
+part 'expense_model.freezed.dart';
 
-  ExpenseModel({
-    required this.id,
-    required this.title,
-    required this.amount,
-    required this.date,
-  });
-
-  String dateFormated() {
+@freezed
+class ExpenseModel with _$ExpenseModel {
+  const ExpenseModel._();
+  const factory ExpenseModel({
+    required String title,
+    required num amount,
+    required String id,
+    required DateTime date,
+  }) = _ExpenseModel;
+  
+  String getDateFormated() {
     return DateFormat.MMMMEEEEd().format(date);
   }
 }

@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cash_planer/app/core/enums.dart';
 import 'package:cash_planer/domain/models/user_model.dart';
-import 'package:cash_planer/domain/repositories/firebase_auth_respository.dart';
+import 'package:cash_planer/domain/repositories/auth_respository.dart';
+import 'package:injectable/injectable.dart';
 
 part 'auth_state.dart';
 
+@injectable
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._firebaseAuthRespository) : super(AuthState());
 

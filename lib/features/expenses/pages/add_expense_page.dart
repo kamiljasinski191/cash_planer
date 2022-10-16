@@ -1,18 +1,20 @@
-import 'package:cash_planer/features/home/cubit/bilance_cubit.dart';
-import 'package:cash_planer/features/nav_bar/nav_bar.dart';
-import 'package:cash_planer/domain/repositories/bilance_respository.dart';
+import 'package:cash_planer/app/ads/ad_banner_widget.dart';
+import 'package:cash_planer/data/remote_data_source/expenses_remote_data_source.dart';
+import 'package:cash_planer/domain/repositories/expenses_repository.dart';
+import 'package:cash_planer/features/expenses/cubit/expenses_cubit.dart';
+import 'package:cash_planer/utilities/nav_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class AddIncomePage extends StatefulWidget {
-  const AddIncomePage({super.key});
+class AddExpensePage extends StatefulWidget {
+  const AddExpensePage({super.key});
 
   @override
-  State<AddIncomePage> createState() => _AddIncomePageState();
+  State<AddExpensePage> createState() => _AddExpensePageState();
 }
 
-class _AddIncomePageState extends State<AddIncomePage> {
+class _AddExpensePageState extends State<AddExpensePage> {
   late TextEditingController _titlecontroller;
   late TextEditingController _amountcontroller;
 
@@ -41,13 +43,15 @@ class _AddIncomePageState extends State<AddIncomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BilanceCubit(BilanceRepository()),
-      child: BlocBuilder<BilanceCubit, BilanceState>(
+      create: (context) =>
+          ExpensesCubit(ExpensesRepository(ExpensesRemoteDataSource())),
+      child: BlocBuilder<ExpensesCubit, ExpensesState>(
         builder: (context, state) {
           return Scaffold(
+            bottomNavigationBar: const AdBannerWidget(),
             drawer: const NavBar(),
             appBar: AppBar(
-                centerTitle: true, title: const Text('Add your new Income')),
+                centerTitle: true, title: const Text('Add your new Expense')),
             body: Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
@@ -61,8 +65,8 @@ class _AddIncomePageState extends State<AddIncomePage> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          label: const Text('name of income'),
-                          hintText: 'Put your name of Income'),
+                          label: const Text('Name'),
+                          hintText: 'Name of your Expense'),
                     ),
                   ),
                   Padding(
@@ -74,7 +78,7 @@ class _AddIncomePageState extends State<AddIncomePage> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           label: const Text('Amount'),
-                          hintText: 'Amount of your Income'),
+                          hintText: 'Amount of your Expense'),
                     ),
                   ),
                   Padding(
@@ -84,10 +88,11 @@ class _AddIncomePageState extends State<AddIncomePage> {
                               _amountcontroller.text.isEmpty
                           ? null
                           : () {
-                              context.read<BilanceCubit>().addIncome(
-                                  _titlecontroller.text,
-                                  num.parse(_amountcontroller.text),
-                                  date);
+                              context.read<ExpensesCubit>().addExpense(
+                                    _titlecontroller.text,
+                                    num.parse(_amountcontroller.text),
+                                    date,
+                                  );
                               _titlecontroller.clear();
                               _amountcontroller.clear();
                               context.pop();

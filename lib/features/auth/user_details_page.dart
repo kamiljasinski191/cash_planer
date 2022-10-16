@@ -1,9 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:cash_planer/data/remote_data_source/auth_remote_data_source.dart';
 import 'package:cash_planer/features/auth/cubit/auth_cubit.dart';
-import 'package:cash_planer/features/nav_bar/nav_bar.dart';
-import 'package:cash_planer/domain/repositories/firebase_auth_respository.dart';
+import 'package:cash_planer/utilities/nav_bar/nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,79 +26,75 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          AuthCubit(FirebaseAuthRespository(AuthRemoteDataSource()))..start(),
-      child: BlocBuilder<AuthCubit, AuthState>(
-        builder: (context, state) {
-          final top = coverHeight - photoRadius;
-          return Scaffold(
-            drawer: const NavBar(),
-            appBar: AppBar(
-              title: const Text('Manage Your Data'),
-            ),
-            body: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      alignment: Alignment.center,
-                      children: [
-                        buildCoverImage(coverHeight),
-                        Positioned(
-                          top: top,
-                          child: buildProfileImage(photoRadius, state),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 90,
-                    ),
-                    ListTile(
-                      leading: const SizedBox(width: 25),
-                      title: Text(
-                        textAlign: TextAlign.center,
-                        state.user != null && state.user!.displayName != null
-                            ? state.user!.displayName!
-                            : 'Set your Name',
-                        style: const TextStyle(fontSize: 32),
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        final top = coverHeight - photoRadius;
+        return Scaffold(
+          drawer: const NavBar(),
+          appBar: AppBar(
+            title: const Text('Manage Your Data'),
+          ),
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.center,
+                    children: [
+                      buildCoverImage(coverHeight),
+                      Positioned(
+                        top: top,
+                        child: buildProfileImage(photoRadius, state),
                       ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.edit),
-                        onPressed: () {
-                          showEditNameAlert();
-                        },
-                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 90,
+                  ),
+                  ListTile(
+                    leading: const SizedBox(width: 25),
+                    title: Text(
+                      textAlign: TextAlign.center,
+                      state.user != null && state.user!.displayName != null
+                          ? state.user!.displayName!
+                          : 'Set your Name',
+                      style: const TextStyle(fontSize: 32),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    trailing: IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        showEditNameAlert();
+                      },
                     ),
-                    Text(
-                      state.user != null ? state.user!.email! : 'NULL',
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Joined:',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      state.user != null
-                          ? state.user!.getJoinDateFormated()
-                          : 'Never Joined',
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    state.user != null ? state.user!.email! : 'NULL',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Joined:',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    state.user != null
+                        ? state.user!.getJoinDateFormated()
+                        : 'Never Joined',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

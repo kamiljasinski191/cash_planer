@@ -1,13 +1,15 @@
 import 'package:cash_planer/data/remote_data_source/auth_remote_data_source.dart';
 import 'package:cash_planer/features/auth/auth_gate/auth_gate.dart';
 import 'package:cash_planer/features/auth/cubit/auth_cubit.dart';
+import 'package:cash_planer/features/bills/pages/add_bill_page.dart';
+import 'package:cash_planer/features/bills/pages/bills_page.dart';
 import 'package:cash_planer/features/home/home_page.dart';
-import 'package:cash_planer/features/expenses/add_expense_page.dart';
-import 'package:cash_planer/features/expenses/expenses_page.dart';
-import 'package:cash_planer/features/incomes/add_income_page.dart';
-import 'package:cash_planer/features/incomes/incomes_page.dart';
+import 'package:cash_planer/features/expenses/pages/add_expense_page.dart';
+import 'package:cash_planer/features/expenses/pages/expenses_page.dart';
+import 'package:cash_planer/features/incomes/pages/add_income_page.dart';
+import 'package:cash_planer/features/incomes/pages/incomes_page.dart';
 import 'package:cash_planer/features/auth/user_details_page.dart';
-import 'package:cash_planer/domain/repositories/firebase_auth_respository.dart';
+import 'package:cash_planer/domain/repositories/auth_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -18,8 +20,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AuthCubit(FirebaseAuthRespository(AuthRemoteDataSource())),
+      create: (context) {
+        return AuthCubit(FirebaseAuthRespository(AuthRemoteDataSource()))
+          ..start();
+      },
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           return MaterialApp.router(
@@ -66,6 +70,15 @@ class MyApp extends StatelessWidget {
                         GoRoute(
                           path: 'add_income',
                           builder: (context, state) => const AddIncomePage(),
+                        ),
+                      ]),
+                  GoRoute(
+                      path: 'bills',
+                      builder: (context, state) => const BillsPage(),
+                      routes: <GoRoute>[
+                        GoRoute(
+                          path: 'add_bill',
+                          builder: (context, state) => const AddBillPage(),
                         ),
                       ]),
                 ]),

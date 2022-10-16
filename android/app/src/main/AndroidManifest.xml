@@ -3,7 +3,7 @@
 
    <application
         android:usesCleartextTraffic="true"
-        android:label="cash_planer"
+        android:label="Cash Planer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -36,5 +36,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6319442409661077~3708975523"/>    
     </application>
 </manifest>
