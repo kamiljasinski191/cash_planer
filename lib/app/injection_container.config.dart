@@ -19,9 +19,8 @@ import '../domain/repositories/incomes_repository.dart' as _i10;
 import '../features/auth/cubit/auth_cubit.dart' as _i11;
 import '../features/bills/cubit/bills_cubit.dart' as _i12;
 import '../features/expenses/cubit/expenses_cubit.dart' as _i13;
-import '../features/home/cubit/home_cubit.dart' as _i14;
 import '../features/incomes/cubit/incomes_cubit.dart'
-    as _i15; // ignore_for_file: unnecessary_lambdas
+    as _i14; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -54,11 +53,7 @@ _i1.GetIt $initGetIt(
       () => _i12.BillsCubit(get<_i5.BillsRepository>()));
   gh.factory<_i13.ExpensesCubit>(
       () => _i13.ExpensesCubit(get<_i7.ExpensesRepository>()));
-  gh.factory<_i14.HomeCubit>(() => _i14.HomeCubit(
-        get<_i7.ExpensesRepository>(),
-        get<_i10.IncomesRepository>(),
-      ));
-  gh.factory<_i15.IncomesCubit>(
-      () => _i15.IncomesCubit(get<_i10.IncomesRepository>()));
+  gh.factory<_i14.IncomesCubit>(
+      () => _i14.IncomesCubit(get<_i10.IncomesRepository>()));
   return get;
 }

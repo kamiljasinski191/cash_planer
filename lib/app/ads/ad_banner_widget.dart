@@ -46,7 +46,11 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
         child: AdWidget(ad: _ad!),
       );
     } else {
-      return Container(child: const Text('Loading Ads'));
+      return Container(
+          child: const Text(
+        'Loading Ads',
+        textAlign: TextAlign.center,
+      ));
     }
   }
 
