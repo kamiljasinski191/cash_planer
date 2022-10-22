@@ -1,8 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:cash_planer/app/ads/ad_banner_widget.dart';
-import 'package:cash_planer/data/remote_data_source/incomes_remote_data_source.dart';
-import 'package:cash_planer/domain/repositories/incomes_repository.dart';
+import 'package:cash_planer/app/core/injection_container.dart';
 import 'package:cash_planer/utilities/delete_alert_dialog/delete_alert_dialog.dart';
 import 'package:cash_planer/app/features/incomes/cubit/incomes_cubit.dart';
 import 'package:cash_planer/app/features/incomes/liest_view/incomes_list_view.dart';
@@ -21,10 +20,8 @@ class IncomesPage extends StatefulWidget {
 class _IncomesPageState extends State<IncomesPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          IncomesCubit(IncomesRepository(IncomesRemoteDataSource()))
-            ..incomesStream(),
+    return BlocProvider<IncomesCubit>(
+      create: (context) => getIt()..incomesStream(),
       child: BlocBuilder<IncomesCubit, IncomesState>(
         builder: (context, state) {
           final incomes = state.model;

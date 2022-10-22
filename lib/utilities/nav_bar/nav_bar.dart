@@ -1,5 +1,4 @@
-import 'package:cash_planer/data/remote_data_source/auth_remote_data_source.dart';
-import 'package:cash_planer/domain/repositories/auth_respository.dart';
+import 'package:cash_planer/app/core/injection_container.dart';
 import 'package:cash_planer/app/features/auth/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,9 +9,8 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          AuthCubit(FirebaseAuthRespository(AuthRemoteDataSource()))..start(),
+    return BlocProvider<AuthCubit>(
+      create: (context) => getIt()..start(),
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           final user = state.user;

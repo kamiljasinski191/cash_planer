@@ -1,4 +1,4 @@
-import 'package:cash_planer/app/injection_container.config.dart';
+import 'package:cash_planer/app/core/injection_container.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 

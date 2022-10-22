@@ -1,6 +1,5 @@
-import 'package:cash_planer/data/remote_data_source/bills_remote_data_source.dart';
+import 'package:cash_planer/app/core/injection_container.dart';
 import 'package:cash_planer/domain/models/bill_model.dart';
-import 'package:cash_planer/domain/repositories/bills_repository.dart';
 import 'package:cash_planer/app/features/bills/cubit/bills_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,10 +41,8 @@ class BillsListView extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                     )),
-                BlocProvider(
-                  create: (context) =>
-                      BillsCubit(BillsRepository(BillsRemoteDataSource()))
-                        ..getDifference(bill.day as int),
+                BlocProvider<BillsCubit>(
+                  create: (context) => getIt()..getDifference(bill.day as int),
                   child: BlocBuilder<BillsCubit, BillsState>(
                     builder: (context, state) {
                       return Text(
@@ -67,10 +64,9 @@ class BillsListView extends StatelessWidget {
                 ),
                 child: Column(children: [
                   Text(
-                    bill.amount.toString(),
+                    '${bill.amount.toString()},-',
                     style: const TextStyle(fontSize: 22),
                   ),
-                  const Text('PLN')
                 ]),
               ),
             )

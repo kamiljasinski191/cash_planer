@@ -1,4 +1,4 @@
-import 'package:cash_planer/data/remote_data_source/auth_remote_data_source.dart';
+import 'package:cash_planer/app/core/injection_container.dart';
 import 'package:cash_planer/app/features/auth/auth_gate/auth_gate.dart';
 import 'package:cash_planer/app/features/auth/cubit/auth_cubit.dart';
 import 'package:cash_planer/app/features/bills/pages/add_bill_page.dart';
@@ -9,7 +9,6 @@ import 'package:cash_planer/app/features/expenses/pages/expenses_page.dart';
 import 'package:cash_planer/app/features/incomes/pages/add_income_page.dart';
 import 'package:cash_planer/app/features/incomes/pages/incomes_page.dart';
 import 'package:cash_planer/app/features/auth/user_details_page.dart';
-import 'package:cash_planer/domain/repositories/auth_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -19,10 +18,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider<AuthCubit>(
       create: (context) {
-        return AuthCubit(FirebaseAuthRespository(AuthRemoteDataSource()))
-          ..start();
+        return getIt()..start();
       },
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {

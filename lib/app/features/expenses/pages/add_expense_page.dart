@@ -1,6 +1,5 @@
 import 'package:cash_planer/app/ads/ad_banner_widget.dart';
-import 'package:cash_planer/data/remote_data_source/expenses_remote_data_source.dart';
-import 'package:cash_planer/domain/repositories/expenses_repository.dart';
+import 'package:cash_planer/app/core/injection_container.dart';
 import 'package:cash_planer/app/features/expenses/cubit/expenses_cubit.dart';
 import 'package:cash_planer/utilities/nav_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +41,8 @@ class _AddExpensePageState extends State<AddExpensePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          ExpensesCubit(ExpensesRepository(ExpensesRemoteDataSource())),
+    return BlocProvider<ExpensesCubit>(
+      create: (context) => getIt(),
       child: BlocBuilder<ExpensesCubit, ExpensesState>(
         builder: (context, state) {
           return Scaffold(

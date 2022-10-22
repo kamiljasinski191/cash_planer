@@ -1,4 +1,4 @@
-import 'package:cash_planer/app/injection_container.dart';
+import 'package:cash_planer/app/core/injection_container.dart';
 import 'package:cash_planer/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

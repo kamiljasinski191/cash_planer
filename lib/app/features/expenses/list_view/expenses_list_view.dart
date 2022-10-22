@@ -50,7 +50,7 @@ class ExpensesListView extends StatelessWidget {
                     model.amount.toString(),
                     style: const TextStyle(fontSize: 22),
                   ),
-                  const Text('PLN')
+                  const Text(',-')
                 ]),
               ),
             )

@@ -1,10 +1,5 @@
 import 'package:cash_planer/app/ads/ad_banner_widget.dart';
-import 'package:cash_planer/data/remote_data_source/bills_remote_data_source.dart';
-import 'package:cash_planer/data/remote_data_source/expenses_remote_data_source.dart';
-import 'package:cash_planer/data/remote_data_source/incomes_remote_data_source.dart';
-import 'package:cash_planer/domain/repositories/bills_repository.dart';
-import 'package:cash_planer/domain/repositories/expenses_repository.dart';
-import 'package:cash_planer/domain/repositories/incomes_repository.dart';
+import 'package:cash_planer/app/core/injection_container.dart';
 import 'package:cash_planer/app/features/bills/cubit/bills_cubit.dart';
 import 'package:cash_planer/app/features/expenses/cubit/expenses_cubit.dart';
 import 'package:cash_planer/app/features/incomes/cubit/incomes_cubit.dart';
@@ -27,20 +22,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => ExpensesCubit(
-            ExpensesRepository(ExpensesRemoteDataSource()),
-          )..expensesStream(),
+        BlocProvider<ExpensesCubit>(
+          create: (context) => getIt()..expensesStream(),
         ),
-        BlocProvider(
-          create: (context) => IncomesCubit(
-            IncomesRepository(IncomesRemoteDataSource()),
-          )..incomesStream(),
+        BlocProvider<IncomesCubit>(
+          create: (context) => getIt()..incomesStream(),
         ),
-        BlocProvider(
-          create: (context) => BillsCubit(
-            BillsRepository(BillsRemoteDataSource()),
-          )..billsStream(),
+        BlocProvider<BillsCubit>(
+          create: (context) => getIt()..billsStream(),
         ),
       ],
       child: BlocBuilder<IncomesCubit, IncomesState>(
