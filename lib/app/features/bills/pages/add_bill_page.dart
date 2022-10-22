@@ -1,8 +1,8 @@
 import 'package:cash_planer/app/ads/ad_banner_widget.dart';
 import 'package:cash_planer/data/remote_data_source/bills_remote_data_source.dart';
 import 'package:cash_planer/domain/repositories/bills_repository.dart';
-import 'package:cash_planer/features/bills/cubit/bills_cubit.dart';
-import 'package:cash_planer/features/bills/days_list.dart';
+import 'package:cash_planer/app/features/bills/cubit/bills_cubit.dart';
+import 'package:cash_planer/app/features/bills/days_list.dart';
 import 'package:cash_planer/utilities/nav_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

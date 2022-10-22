@@ -1,6 +1,6 @@
 import 'package:cash_planer/data/remote_data_source/auth_remote_data_source.dart';
 import 'package:cash_planer/domain/repositories/auth_respository.dart';
-import 'package:cash_planer/features/auth/cubit/auth_cubit.dart';
+import 'package:cash_planer/app/features/auth/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

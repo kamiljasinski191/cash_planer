@@ -1,9 +1,9 @@
-import 'package:cash_planer/features/incomes/cubit/incomes_cubit.dart';
+import 'package:cash_planer/app/features/expenses/cubit/expenses_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class IncomesListView extends StatelessWidget {
-  const IncomesListView({Key? key, required this.model, required this.date})
+class ExpensesListView extends StatelessWidget {
+  const ExpensesListView({Key? key, required this.model, required this.date})
       : super(key: key);
 
   final dynamic model;
@@ -15,7 +15,7 @@ class IncomesListView extends StatelessWidget {
     return Dismissible(
       key: ValueKey(model.id),
       onDismissed: (direction) {
-        context.read<IncomesCubit>().deleteIncome(model.id);
+        context.read<ExpensesCubit>().deleteExpense(model.id);
       },
       child: Container(
         padding: const EdgeInsets.all(20),

@@ -5,9 +5,9 @@ import 'package:cash_planer/data/remote_data_source/incomes_remote_data_source.d
 import 'package:cash_planer/domain/repositories/bills_repository.dart';
 import 'package:cash_planer/domain/repositories/expenses_repository.dart';
 import 'package:cash_planer/domain/repositories/incomes_repository.dart';
-import 'package:cash_planer/features/bills/cubit/bills_cubit.dart';
-import 'package:cash_planer/features/expenses/cubit/expenses_cubit.dart';
-import 'package:cash_planer/features/incomes/cubit/incomes_cubit.dart';
+import 'package:cash_planer/app/features/bills/cubit/bills_cubit.dart';
+import 'package:cash_planer/app/features/expenses/cubit/expenses_cubit.dart';
+import 'package:cash_planer/app/features/incomes/cubit/incomes_cubit.dart';
 import 'package:cash_planer/utilities/nav_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

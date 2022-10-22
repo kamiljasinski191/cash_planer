@@ -16,10 +16,10 @@ import '../domain/repositories/auth_respository.dart' as _i8;
 import '../domain/repositories/bills_repository.dart' as _i5;
 import '../domain/repositories/expenses_repository.dart' as _i7;
 import '../domain/repositories/incomes_repository.dart' as _i10;
-import '../features/auth/cubit/auth_cubit.dart' as _i11;
-import '../features/bills/cubit/bills_cubit.dart' as _i12;
-import '../features/expenses/cubit/expenses_cubit.dart' as _i13;
-import '../features/incomes/cubit/incomes_cubit.dart'
+import '../app/features/auth/cubit/auth_cubit.dart' as _i11;
+import '../app/features/bills/cubit/bills_cubit.dart' as _i12;
+import '../app/features/expenses/cubit/expenses_cubit.dart' as _i13;
+import '../app/features/incomes/cubit/incomes_cubit.dart'
     as _i14; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
