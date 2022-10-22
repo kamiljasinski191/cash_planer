@@ -33,6 +33,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           drawer: const NavBar(),
           appBar: AppBar(
             title: const Text('Manage Your Data'),
+            backgroundColor: Colors.transparent,
           ),
           body: SingleChildScrollView(
             child: Center(

@@ -47,6 +47,7 @@ class _AddBillPageState extends State<AddBillPage> {
             drawer: const NavBar(),
             appBar: AppBar(
                 centerTitle: true, title: const Text('Add your new Bill')),
+            backgroundColor: Colors.transparent,
             body: Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(

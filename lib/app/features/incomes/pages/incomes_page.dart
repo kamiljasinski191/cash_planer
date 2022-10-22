@@ -35,6 +35,7 @@ class _IncomesPageState extends State<IncomesPage> {
             ),
             drawer: const NavBar(),
             appBar: AppBar(
+              backgroundColor: Colors.transparent,
               actions: [
                 IconButton(
                   onPressed: () async {

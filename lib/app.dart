@@ -9,9 +9,11 @@ import 'package:cash_planer/app/features/expenses/pages/expenses_page.dart';
 import 'package:cash_planer/app/features/incomes/pages/add_income_page.dart';
 import 'package:cash_planer/app/features/incomes/pages/incomes_page.dart';
 import 'package:cash_planer/app/features/auth/user_details_page.dart';
+import 'package:cash_planer/utilities/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
@@ -24,19 +26,21 @@ class MyApp extends StatelessWidget {
       },
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
-          return MaterialApp.router(
-            routeInformationParser: _router.routeInformationParser,
-            routeInformationProvider: _router.routeInformationProvider,
-            routerDelegate: _router.routerDelegate,
-            title: 'Cash Planer',
-            theme: ThemeData(
-              brightness: Brightness.light,
-            ),
-            themeMode: ThemeMode.system,
-            darkTheme: ThemeData(
-              brightness: Brightness.dark,
-            ),
-          );
+          return ChangeNotifierProvider(
+              create: (context) => ThemeProvider(),
+              builder: (context, _) {
+                final themeProvider = Provider.of<ThemeProvider>(context);
+
+                return MaterialApp.router(
+                  routeInformationParser: _router.routeInformationParser,
+                  routeInformationProvider: _router.routeInformationProvider,
+                  routerDelegate: _router.routerDelegate,
+                  title: 'Cash Planer',
+                  themeMode: themeProvider.themeMode,
+                  theme: MyThemes.lightTheme,
+                  darkTheme: MyThemes.darkTheme,
+                );
+              });
         },
       ),
     );

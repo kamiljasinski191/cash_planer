@@ -35,6 +35,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
             ),
             drawer: const NavBar(),
             appBar: AppBar(
+              backgroundColor: Colors.transparent,
               actions: [
                 IconButton(
                   onPressed: () async {

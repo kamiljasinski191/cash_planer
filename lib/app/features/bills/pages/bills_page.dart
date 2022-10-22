@@ -36,6 +36,7 @@ class _BillsPageState extends State<BillsPage> {
             ),
             drawer: const NavBar(),
             appBar: AppBar(
+              backgroundColor: Colors.transparent,
               actions: [
                 IconButton(
                   onPressed: () async {

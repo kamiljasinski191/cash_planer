@@ -52,14 +52,17 @@ class _HomePageState extends State<HomePage> {
                     drawer: const NavBar(),
                     appBar: AppBar(
                       title: const Text('Bilance'),
+                      backgroundColor: Colors.transparent,
                       centerTitle: true,
                     ),
                     body: ListView(
                       children: [
                         Container(
                           decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 2.0, color: Colors.black45),
                             borderRadius: BorderRadius.circular(12),
-                            color: const Color.fromARGB(121, 35, 226, 252),
+                            color: Color.fromARGB(255, 35, 227, 252),
                           ),
                           height: 190,
                           padding: const EdgeInsets.all(30),
@@ -74,11 +77,15 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   const Text(
                                     'Incomes',
-                                    style: TextStyle(fontSize: 24),
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                    ),
                                   ),
                                   Text(
                                     '$income ,-',
-                                    style: const TextStyle(fontSize: 24),
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -88,11 +95,15 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   const Text(
                                     'Expenses',
-                                    style: TextStyle(fontSize: 24),
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                    ),
                                   ),
                                   Text(
                                     '$expense ,-',
-                                    style: const TextStyle(fontSize: 24),
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -102,11 +113,15 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   const Text(
                                     'Bills',
-                                    style: TextStyle(fontSize: 24),
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                    ),
                                   ),
                                   Text(
                                     '$bill ,-',
-                                    style: const TextStyle(fontSize: 24),
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -116,11 +131,15 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   const Text(
                                     'Bilance',
-                                    style: TextStyle(fontSize: 24),
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                    ),
                                   ),
                                   Text(
                                     '$sumConverted ,-',
-                                    style: const TextStyle(fontSize: 24),
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -140,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 fixedSize: const Size.fromHeight(60),
                                 backgroundColor:
-                                    const Color.fromARGB(122, 178, 237, 109)),
+                                    Color.fromARGB(150, 177, 237, 109)),
                             child: const Text(
                               'Manage your Incomes',
                               style: TextStyle(fontSize: 20),
@@ -159,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(12)),
                                 fixedSize: const Size.fromHeight(60),
                                 backgroundColor:
-                                    const Color.fromARGB(121, 177, 26, 127)),
+                                    Color.fromARGB(150, 177, 26, 127)),
                             child: const Text(
                               'Manage your Expenses',
                               style: TextStyle(fontSize: 20),
@@ -178,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(12)),
                                 fixedSize: const Size.fromHeight(60),
                                 backgroundColor:
-                                    const Color.fromARGB(121, 39, 9, 207)),
+                                    Color.fromARGB(150, 39, 9, 207)),
                             child: const Text(
                               'Manage your Regular Bills',
                               style: TextStyle(fontSize: 20),

@@ -1,5 +1,6 @@
 import 'package:cash_planer/app/core/injection_container.dart';
 import 'package:cash_planer/app/features/auth/cubit/auth_cubit.dart';
+import 'package:cash_planer/utilities/nav_bar/change_theme_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -28,6 +29,7 @@ class NavBar extends StatelessWidget {
                                     ? user.displayName!
                                     : '',
                                 style: const TextStyle(
+                                    color: Colors.white,
                                     backgroundColor: Colors.black38),
                               ),
                             ],
@@ -37,6 +39,7 @@ class NavBar extends StatelessWidget {
                         ? Text(
                             user.email!,
                             style: const TextStyle(
+                                color: Colors.white,
                                 backgroundColor: Colors.black38),
                           )
                         : const Text('niezalogowany'),
@@ -115,10 +118,9 @@ class NavBar extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('COMMING SOON'),
-                  onTap: () {},
+                const ListTile(
+                  leading: Text('ThemeMode'),
+                  title: ChangeThemeButtonWidget(),
                 ),
                 ListTile(
                   leading: const Icon(Icons.settings),

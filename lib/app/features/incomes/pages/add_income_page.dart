@@ -49,7 +49,9 @@ class _AddIncomePageState extends State<AddIncomePage> {
             bottomNavigationBar: const AdBannerWidget(),
             drawer: const NavBar(),
             appBar: AppBar(
-                centerTitle: true, title: const Text('Add your new Income')),
+                backgroundColor: Colors.transparent,
+                centerTitle: true,
+                title: const Text('Add your new Income')),
             body: Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(

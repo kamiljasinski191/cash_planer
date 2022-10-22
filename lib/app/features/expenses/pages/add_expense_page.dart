@@ -50,6 +50,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
             drawer: const NavBar(),
             appBar: AppBar(
                 centerTitle: true, title: const Text('Add your new Expense')),
+            backgroundColor: Colors.transparent,
             body: Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
